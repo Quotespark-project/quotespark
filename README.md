@@ -2,8 +2,6 @@
 
 ## 📖 Project Overview
 
-**QuoteSpark** is a modern web application that helps people reflect, grow, and connect with others—one question at a time. Every day, QuoteSpark uses advanced AI to generate a unique, thought-provoking question. Users can read the question, write their own reflection, and submit it. Each submitted reflection is:
-
 - **Securely stored in Azure Blob Storage** for the user’s own record
 - **Posted anonymously to a public feed** so anyone visiting the website can see how others are feeling and reflecting
 
@@ -405,4 +403,5 @@ For support and questions:
 
 ---
 
-**Note**: This project was developed as part of an academic curriculum and demonstrates modern cloud-native application development practices using Azure, Docker, and Go.
+
+**Note**: This project was developed as part of an academic curriculum and demonstrates modern cloud-native application development practices using Azure, Docker, and Go. 
