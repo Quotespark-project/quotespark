@@ -3,21 +3,26 @@
 ## 📖 Project Overview
 
 **QuoteSpark** is a modern web application that helps people reflect, grow, and connect with others—one question at a time. Every day, QuoteSpark uses advanced AI to generate a unique, thought-provoking question. Users can read the question, write their own reflection, and submit it. Each submitted reflection is:
+
 - **Securely stored in Azure Blob Storage** for the user’s own record
 - **Posted anonymously to a public feed** so anyone visiting the website can see how others are feeling and reflecting
 
 ### **What Problem Does QuoteSpark Solve?**
+
 In a world where people often feel isolated or overwhelmed, QuoteSpark:
+
 - **Promotes daily self-reflection** with meaningful prompts
 - **Makes journaling easy and accessible** from any device
 - **Builds a sense of community** by letting users see anonymous reflections from others, helping everyone realize they’re not alone in their thoughts and feelings
 - **Encourages empathy and connection** by sharing real, anonymous reflections
 
 ### **Who Is It For?**
+
 - **Anyone** seeking self-improvement, mindfulness, or a sense of connection
 - **Students, professionals, and the general public** interested in journaling or understanding how others are feeling
 
 ### **How Does It Work?**
+
 1. **AI-Generated Questions:** Each day, the site fetches a new question from a powerful language model (Groq API).
 2. **User Reflection:** Users read the question and submit their own reflection.
 3. **Public Feed:** The submitted reflection is posted anonymously to a public feed visible to all visitors.
@@ -25,6 +30,7 @@ In a world where people often feel isolated or overwhelmed, QuoteSpark:
 5. **Review & Growth:** Users and visitors can read the public feed to see how others are reflecting and feeling.
 
 ### **Technology Behind the Solution**
+
 - **Frontend:** Modern HTML5/CSS3 with a beautiful, responsive design
 - **Backend:** Go (Golang) web server running in an Azure Container Instance
 - **AI Integration:** Groq API for generating daily questions
@@ -41,12 +47,14 @@ In a world where people often feel isolated or overwhelmed, QuoteSpark:
 ## 🛠️ Technology Stack
 
 ### Backend
+
 - **Language**: Go 1.23.2
 - **Framework**: Standard Go HTTP server
 - **Containerization**: Docker with multi-stage builds
 - **AI Integration**: Groq API for question generation
 
 ### Infrastructure
+
 - **Infrastructure as Code**: Terraform
 - **Cloud Platform**: Microsoft Azure
 - **Compute**: Azure Container Instances (ACI)
@@ -54,13 +62,14 @@ In a world where people often feel isolated or overwhelmed, QuoteSpark:
 - **Container Registry**: Azure Container Registry (ACR)
 
 ### Frontend
+
 - **HTML5/CSS3**: Modern, responsive design with glassmorphism effects
 - **JavaScript**: Interactive animations and user experience enhancements
 - **Templates**: Go HTML templates for server-side rendering
 
 ## 📁 Project Structure
 
-```
+```tree
 quotespark/
 ├── app/                          # Go application source code
 │   ├── main.go                   # Main application entry point
@@ -110,18 +119,21 @@ AZURE_STORAGE_KEY=your_storage_account_key
 ### Local Development
 
 1. **Clone the repository**:
+
    ```bash
    git clone <repository-url>
    cd quotespark
    ```
 
 2. **Install dependencies**:
+
    ```bash
    cd app
    go mod download
    ```
 
 3. **Run locally**:
+
    ```bash
    go run .
    ```
@@ -196,10 +208,12 @@ terraform output container_group_fqdn
 ### Important Architecture Notes
 
 **Resource Group Separation**: This project uses a two-resource-group architecture:
+
 - **`quotespark-acr-rg`**: Contains only the Azure Container Registry (manually created, persistent)
 - **`quotespark-rg`**: Contains application infrastructure (managed by Terraform)
 
 This separation ensures that:
+
 - Docker images persist even when application infrastructure is destroyed
 - ACR can be reused across multiple deployments
 - Clean separation of concerns between image storage and application hosting
@@ -213,6 +227,7 @@ The Terraform configuration includes proper resource dependencies to ensure corr
 3. **Container Dependencies**: Container group waits for storage containers to be created
 
 This ensures that:
+
 - Storage account is fully provisioned before containers are created
 - Storage containers exist before the application tries to use them
 - Environment variables are properly populated with storage account details
@@ -246,23 +261,29 @@ The application uses environment variables for configuration:
 ### Major Challenges Faced
 
 #### 1. Azure App Service Limitations
+
 **Problem**: Initially attempted to use Azure App Service with Go runtime, but encountered:
+
 - `LinuxFxVersion has an invalid value` errors
 - Go not being a native runtime for App Service
 - Container deployment complexity
 
 **Solution**: Switched to Azure Container Instances (ACI) for:
+
 - Better container support
 - Simplified deployment
 - More predictable runtime environment
 
 #### 2. Docker Build Issues
+
 **Problem**: Encountered multiple Docker-related issues:
+
 - Go version mismatches (`go.mod requires go >= 1.23.2`)
 - Read-only file system errors with `scratch` base image
 - Glibc compatibility issues
 
 **Solution**: Implemented multi-stage Docker build:
+
 ```dockerfile
 # Build stage with proper Go version
 FROM golang:1.23.2 AS builder
@@ -279,23 +300,29 @@ CMD ["./quotespark"]
 ```
 
 #### 3. Azure SDK Version Compatibility
+
 **Problem**: Azure SDK for Go had breaking changes between versions:
+
 - `azblob.NewServiceClientWithSharedKey` deprecated
 - Container client method changes
 - Error handling pattern updates
 
 **Solution**: Updated all Azure SDK calls to use latest patterns:
+
 - `azblob.NewClientWithSharedKeyCredential`
 - `client.ServiceClient().NewContainerClient`
 - Updated error handling for blob operations
 
 #### 4. JSON Data Structure Handling
+
 **Problem**: Inconsistent JSON data structures between questions and reflections:
+
 - Questions stored as objects
 - Reflections stored as arrays
 - Type assertion errors in Go
 
 **Solution**: Implemented flexible JSON handling:
+
 ```go
 func readJSONBlob(container, blobName string) (interface{}, error) {
     // Returns interface{} to handle both maps and arrays
@@ -303,12 +330,15 @@ func readJSONBlob(container, blobName string) (interface{}, error) {
 ```
 
 #### 5. Container Registry Integration
+
 **Problem**: Manual ACR creation outside Terraform caused:
+
 - Dependency management issues
 - Credential handling complexity
 - Deployment automation challenges
 
 **Solution**: Created ACR manually first, then referenced in Terraform:
+
 - ACR created via Azure CLI
 - Credentials stored in Terraform variables
 - Image registry credentials configured in container group
@@ -324,12 +354,14 @@ func readJSONBlob(container, blobName string) (interface{}, error) {
 ## 📊 Features
 
 ### Core Functionality
+
 - **Daily Question Generation**: AI-powered questions using Groq API
 - **Reflection Storage**: Secure storage of user reflections in Azure Blob Storage
 - **Responsive Web Interface**: Modern, mobile-friendly design
 - **Real-time Updates**: Immediate reflection submission and display
 
 ### Technical Features
+
 - **Containerized Deployment**: Docker-based deployment for consistency
 - **Cloud-Native Architecture**: Leverages Azure cloud services
 - **Scalable Storage**: Azure Blob Storage for data persistence
@@ -366,10 +398,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For support and questions:
+
 - Create an issue in the GitHub repository
 - Contact the development team
 - Review the [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions
 
 ---
 
-**Note**: This project was developed as part of an academic curriculum and demonstrates modern cloud-native application development practices using Azure, Docker, and Go. 
+**Note**: This project was developed as part of an academic curriculum and demonstrates modern cloud-native application development practices using Azure, Docker, and Go.

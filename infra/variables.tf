@@ -1,7 +1,6 @@
 variable "resource_group_name" {}
-variable "location" {
-  default = "canadacentral"
-}
+
+variable "location" {}
 
 variable "storage_account_name" {}
 variable "subscription_id" {}
