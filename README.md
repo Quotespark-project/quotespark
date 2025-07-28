@@ -2,7 +2,35 @@
 
 ## 📖 Project Overview
 
-**QuoteSpark** is an intelligent web application that helps users maintain a daily reflection journal by leveraging artificial intelligence to generate thought-provoking questions and insights. The application integrates with Groq's Large Language Model (LLM) to provide personalized daily questions and stores user reflections securely in Azure Blob Storage.
+**QuoteSpark** is a modern web application designed to help anyone build a daily habit of self-reflection and personal growth. Every day, QuoteSpark uses advanced AI to generate a unique, thought-provoking question. Users can reflect on the question, write and save their answers, and revisit their past reflections—all in a secure, beautifully designed online journal.
+
+### **What Problem Does QuoteSpark Solve?**
+In our fast-paced world, many people struggle to pause, reflect, and grow. Traditional journaling can feel overwhelming or aimless. QuoteSpark solves this by:
+- **Prompting daily reflection:** No more “what should I write about?”—the AI provides a fresh, meaningful question every day.
+- **Making reflection easy and accessible:** Users can journal from any device, anywhere, anytime.
+- **Encouraging consistency:** The engaging interface and daily prompts help users build a sustainable habit.
+- **Storing reflections securely:** All entries are saved in the cloud, so users never lose their thoughts.
+
+### **Who Is It For?**
+- **Students** seeking self-improvement or mental wellness
+- **Professionals** wanting to track growth and insights
+- **Anyone** interested in mindfulness, journaling, or personal development
+
+### **How Does It Work?**
+1. **AI-Generated Questions:** Each day, the site fetches a new question from a powerful language model (Groq API).
+2. **User Reflection:** Users answer the question in their private journal.
+3. **Secure Storage:** Reflections and questions are stored in Azure Blob Storage, ensuring privacy and reliability.
+4. **Review & Growth:** Users can revisit their past answers to see their progress over time.
+
+### **Technology Behind the Solution**
+- **Frontend:** Modern HTML5/CSS3 with a beautiful, responsive design
+- **Backend:** Go (Golang) web server running in an Azure Container Instance
+- **AI Integration:** Groq API for generating daily questions
+- **Cloud Storage:** Azure Blob Storage for secure, persistent data
+- **Containerization:** Docker for consistent, portable deployments
+- **Infrastructure as Code:** Terraform for automated, reproducible Azure setup
+
+**QuoteSpark** empowers users to reflect, grow, and build a better version of themselves—one question at a time.
 
 ### 🎯 Purpose & Vision
 
