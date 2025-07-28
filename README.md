@@ -2,25 +2,27 @@
 
 ## 📖 Project Overview
 
-**QuoteSpark** is a modern web application designed to help anyone build a daily habit of self-reflection and personal growth. Every day, QuoteSpark uses advanced AI to generate a unique, thought-provoking question. Users can reflect on the question, write and save their answers, and revisit their past reflections—all in a secure, beautifully designed online journal.
+**QuoteSpark** is a modern web application that helps people reflect, grow, and connect with others—one question at a time. Every day, QuoteSpark uses advanced AI to generate a unique, thought-provoking question. Users can read the question, write their own reflection, and submit it. Each submitted reflection is:
+- **Securely stored in Azure Blob Storage** for the user’s own record
+- **Posted anonymously to a public feed** so anyone visiting the website can see how others are feeling and reflecting
 
 ### **What Problem Does QuoteSpark Solve?**
-In our fast-paced world, many people struggle to pause, reflect, and grow. Traditional journaling can feel overwhelming or aimless. QuoteSpark solves this by:
-- **Prompting daily reflection:** No more “what should I write about?”—the AI provides a fresh, meaningful question every day.
-- **Making reflection easy and accessible:** Users can journal from any device, anywhere, anytime.
-- **Encouraging consistency:** The engaging interface and daily prompts help users build a sustainable habit.
-- **Storing reflections securely:** All entries are saved in the cloud, so users never lose their thoughts.
+In a world where people often feel isolated or overwhelmed, QuoteSpark:
+- **Promotes daily self-reflection** with meaningful prompts
+- **Makes journaling easy and accessible** from any device
+- **Builds a sense of community** by letting users see anonymous reflections from others, helping everyone realize they’re not alone in their thoughts and feelings
+- **Encourages empathy and connection** by sharing real, anonymous reflections
 
 ### **Who Is It For?**
-- **Students** seeking self-improvement or mental wellness
-- **Professionals** wanting to track growth and insights
-- **Anyone** interested in mindfulness, journaling, or personal development
+- **Anyone** seeking self-improvement, mindfulness, or a sense of connection
+- **Students, professionals, and the general public** interested in journaling or understanding how others are feeling
 
 ### **How Does It Work?**
 1. **AI-Generated Questions:** Each day, the site fetches a new question from a powerful language model (Groq API).
-2. **User Reflection:** Users answer the question in their private journal.
-3. **Secure Storage:** Reflections and questions are stored in Azure Blob Storage, ensuring privacy and reliability.
-4. **Review & Growth:** Users can revisit their past answers to see their progress over time.
+2. **User Reflection:** Users read the question and submit their own reflection.
+3. **Public Feed:** The submitted reflection is posted anonymously to a public feed visible to all visitors.
+4. **Secure Storage:** Reflections and questions are stored in Azure Blob Storage.
+5. **Review & Growth:** Users and visitors can read the public feed to see how others are reflecting and feeling.
 
 ### **Technology Behind the Solution**
 - **Frontend:** Modern HTML5/CSS3 with a beautiful, responsive design
@@ -30,15 +32,7 @@ In our fast-paced world, many people struggle to pause, reflect, and grow. Tradi
 - **Containerization:** Docker for consistent, portable deployments
 - **Infrastructure as Code:** Terraform for automated, reproducible Azure setup
 
-**QuoteSpark** empowers users to reflect, grow, and build a better version of themselves—one question at a time.
-
-### 🎯 Purpose & Vision
-
-In today's fast-paced world, maintaining a consistent reflection practice can be challenging. QuoteSpark addresses this by:
-- **Automating Question Generation**: Uses AI to create unique, thought-provoking daily questions
-- **Structured Reflection**: Provides a clean, intuitive interface for daily journaling
-- **Data Persistence**: Securely stores reflections and questions in Azure cloud storage
-- **Scalable Architecture**: Built with modern cloud-native technologies for reliability and scalability
+**QuoteSpark** empowers users to reflect, connect, and grow—while building a supportive, anonymous community.
 
 ### 🏗️ Architecture Overview
 
