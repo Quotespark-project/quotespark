@@ -21,7 +21,7 @@ resource "azurerm_storage_container" "quotesubmissions" {
   name                  = "quotesubmissions"
   storage_account_id    = azurerm_storage_account.storage.id
   container_access_type = "private"
-  
+
   depends_on = [azurerm_storage_account.storage]
 }
 
@@ -30,7 +30,7 @@ resource "azurerm_storage_container" "questions" {
   name                  = "questions"
   storage_account_id    = azurerm_storage_account.storage.id
   container_access_type = "private"
-  
+
   depends_on = [azurerm_storage_account.storage]
 }
 
@@ -52,7 +52,7 @@ resource "azurerm_container_group" "quotespark" {
     }
 
     environment_variables = {
-      GROQ_API_KEY = var.groq_api_key
+      GROQ_API_KEY          = var.groq_api_key
       AZURE_STORAGE_ACCOUNT = azurerm_storage_account.storage.name
       AZURE_STORAGE_KEY     = azurerm_storage_account.storage.primary_access_key
     }
@@ -65,8 +65,8 @@ resource "azurerm_container_group" "quotespark" {
   }
 
   ip_address_type = "Public"
-  dns_name_label  = "quotespark-2211"
-  
+  dns_name_label  = "quotespark-0203"
+
   depends_on = [
     azurerm_storage_container.quotesubmissions,
     azurerm_storage_container.questions
